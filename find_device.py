@@ -18,7 +18,10 @@ The script needs a network ID, timestamp, and IP address. Once supplied with thi
  
  Once the result is given there will be an option to apply a block policy to this client, if desired.
  
- usage: python3 find_device.py [-a] ipAddress [-t] timestamp [-n] networkId
+ API key can be passed as an argument or absent there it will use the env var of <<MERAKI_DASHBOARD_API_KEY>>
+ 
+ usage: python3 find_device.py [-o] orgId
+        python3 find_device.py [-o] orgId [-k, --api_key] apiKey
 '''
 RETRIES = 5 # number of retries when rate limits apply
 TOTAL_PAGES = -1 # number of pages from network event log (-1 for all pages)
@@ -202,7 +205,7 @@ async def main(argv):
     if 'apikey' in locals():
         api_key = apikey
     else:
-        api_key = os.environ.get("MERAKI_API_KEY")
+        api_key = os.environ.get("MERAKI_DASHBOARD_API_KEY")
 
     async with meraki.aio.AsyncDashboardAPI(
         log_file_prefix=__file__[:-3],
