@@ -1,4 +1,4 @@
-# meraki-who-had-that-ip-address
+# README
 This script solves the problem of finding a device given an IP address that it had at a certain moment in time.
 
 The script needs a network ID, timestamp, and IP address. Once supplied with this information the script
