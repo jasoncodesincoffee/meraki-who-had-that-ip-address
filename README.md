@@ -11,5 +11,9 @@ The script needs a network ID, timestamp, and IP address. Once supplied with thi
  
  API key can be passed as an argument or absent there it will use the env var of <<MERAKI_DASHBOARD_API_KEY>>
  
- usage: python3 find_device.py [-o] orgId
+ usage: 
+ ```
+        python3 find_device.py [-o] orgId
+ 
         python3 find_device.py [-o] orgId [-k, --api_key] apiKey
+```
