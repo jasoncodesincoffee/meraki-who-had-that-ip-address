@@ -2,3 +2,4 @@ meraki~=1.24.0
 python-dateutil~=2.8.2
 pandas~=1.4.4
 fuzzywuzzy~=0.18.0
+python-Levenshtein~=0.12.2
