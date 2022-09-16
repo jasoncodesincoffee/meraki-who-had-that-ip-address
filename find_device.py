@@ -18,8 +18,16 @@ The script needs a network ID, timestamp, and IP address. Once supplied with thi
  
  Once the result is given there will be an option to apply a block policy to this client, if desired.
  
- usage: python3 find_device.py [-a] ipAddress [-t] timestamp [-n] networkId
+ API key can be passed as an argument or absent there it will use the env var of <<MERAKI_DASHBOARD_API_KEY>>
+ 
+ usage: python3 find_device.py [-o] orgId
+        python3 find_device.py [-o] orgId [-k, --api_key] apiKey
 '''
+#####################################################
+#
+# Global variables
+#
+#####################################################
 RETRIES = 5 # number of retries when rate limits apply
 TOTAL_PAGES = -1 # number of pages from network event log (-1 for all pages)
 PER_PAGE_RESULTS = 1000 # number of results per page from network event log
@@ -30,7 +38,12 @@ def print_help():
     for line in lines:
         print(f'# {line}')
 
-
+     
+#####################################################
+#
+# Prompts inputs for date/time and validates
+#
+#####################################################
 def get_event_time():
     while True:
         print("Remember, times for events will be in UTC")
@@ -100,7 +113,13 @@ def prompts():
 
     return ip_addr, event_date
 
-
+   
+#####################################################
+#
+# Search function. Uses fuzzy matching to find result(s)
+# to search pattern input from user.
+#
+#####################################################
 def search_func(networks):
     net_list = []
     for network in networks:
